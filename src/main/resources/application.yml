@@ -1,0 +1,20 @@
+# ===============================
+# [ Spring Properties ]
+# ===============================
+spring:
+  jpa:
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library?user=library&password=library
+  mustache:
+    suffix: .html
+
+logging:
+  level:
+    com:
+      github:
+        greatlirik:
+          DEBUG
+    org:
+      springframework: INFO
+      hibernate: ERROR
