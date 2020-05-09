@@ -4,9 +4,9 @@ INSERT INTO role VALUES
 ;
 
 INSERT INTO account VALUES
-    (1, 'admin', 'admin', true)
+    (0, 'admin', 'admin', true)
 ;
 
 INSERT INTO account_role VALUES
-    (1, 1, 1)
+    (0, 0, 1)
 ;
