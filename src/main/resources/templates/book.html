@@ -38,6 +38,7 @@
             <h5 class="card-title">{{year}}</h5>
             <h5 class="card-title">{{quantity}}</h5>
             <form method="post">
+                    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
                     <button type="submit" class="btn btn-primary">Take book</button>
             </form>
             <h6 class="card-subtitle mb-2 text-muted">{{id}}</h6>

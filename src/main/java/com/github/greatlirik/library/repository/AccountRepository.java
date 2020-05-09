@@ -3,6 +3,8 @@ package com.github.greatlirik.library.repository;
 import com.github.greatlirik.library.entity.AccountEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.util.Optional;
+
 public interface AccountRepository extends PagingAndSortingRepository<AccountEntity,Long> {
-    AccountEntity findByName(String username);
+    Optional<AccountEntity> findByName(String username);
 }

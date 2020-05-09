@@ -7,6 +7,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/library?user=library&password=library
   mustache:
+    expose-request-attributes: true
     suffix: .html
 
 logging:

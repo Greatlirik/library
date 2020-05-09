@@ -16,7 +16,7 @@ import java.util.Optional;
 public class LibraryController {
     private final BookRepository bookRepository;
 
-    @GetMapping("/")
+    @GetMapping("/library")
     public ModelAndView page(@RequestParam(name = "title", required = false) String title) {
         final Iterable<BookEntity> books = Optional.ofNullable(title)
                 .map(bookRepository::findAllByTitle)

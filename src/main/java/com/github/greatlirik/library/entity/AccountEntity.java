@@ -16,7 +16,7 @@ import java.util.Set;
 @Accessors(chain = true)
 public class AccountEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank

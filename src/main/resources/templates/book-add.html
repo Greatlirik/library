@@ -44,6 +44,7 @@
 <div class="container">
     <h2>Add book</h2>
     <form method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
         <div class="form-group">
             <label for="title">Title</label>
             <input class="form-control" id="title" name="title" placeholder="some title..." type="text" required>
