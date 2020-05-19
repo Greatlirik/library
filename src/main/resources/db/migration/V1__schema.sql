@@ -5,13 +5,24 @@ CREATE TABLE author (
     CONSTRAINT pk_author_id PRIMARY KEY (id)
 );
 
+CREATE TABLE account (
+    id SERIAL,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR (255) NOT NULL,
+    active BOOLEAN NOT NULL,
+    CONSTRAINT pk_account_id PRIMARY KEY (id)
+);
+
 CREATE TABLE book (
     id SERIAL,
     title VARCHAR(255) NOT NULL,
     genre VARCHAR (255) NOT NULL,
     year SMALLINT NOT NULL,
     quantity SMALLINT NOT NULL,
-    CONSTRAINT pk_book_id PRIMARY KEY (id)
+    free BOOLEAN NOT NULL,
+    account_id INTEGER,
+    CONSTRAINT pk_book_id PRIMARY KEY (id),
+    CONSTRAINT fk_book_account FOREIGN KEY (account_id) REFERENCES account (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE author_book (
@@ -21,14 +32,6 @@ CREATE TABLE author_book (
     CONSTRAINT pk_author_book_id PRIMARY KEY (id),
     CONSTRAINT fk_author_book_author_id FOREIGN KEY (author_id) REFERENCES author (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_author_book_book_id FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE account (
-    id SERIAL,
-    name VARCHAR(255) NOT NULL,
-    password VARCHAR (255) NOT NULL,
-    active BOOLEAN NOT NULL,
-    CONSTRAINT pk_account_id PRIMARY KEY (id)
 );
 
 CREATE TABLE role (
@@ -46,4 +49,5 @@ CREATE TABLE account_role (
     CONSTRAINT fk_account_role_account_id FOREIGN KEY (account_id) REFERENCES account (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_account_role_role_id FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 

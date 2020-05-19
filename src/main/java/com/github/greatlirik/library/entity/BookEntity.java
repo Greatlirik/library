@@ -1,7 +1,9 @@
 package com.github.greatlirik.library.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
@@ -27,6 +29,14 @@ public class BookEntity {
     private Integer year;
     @Column(name="quantity", nullable = false)
     private Integer quantity;
+    @Column(name="free", nullable = false)
+    private Boolean free;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private AccountEntity account;
 
     //TODO add many to many here with authors
 }

@@ -3,6 +3,7 @@ package com.github.greatlirik.library.controller;
 import com.github.greatlirik.library.entity.AccountEntity;
 import com.github.greatlirik.library.entity.Role;
 import com.github.greatlirik.library.repository.AccountRepository;
+import com.github.greatlirik.library.service.DefaultUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,9 +30,17 @@ public class AccountController {
 
     @GetMapping("/account")
     public ModelAndView account() {
-        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Map<String, String> model = Map.of(
-                "name", auth.getName()
+        final AccountEntity accountEntity = Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+                .map(Authentication::getPrincipal)
+                .filter(auth -> auth instanceof DefaultUserDetailsService.SimpleUserDetails)
+                .map(auth -> (DefaultUserDetailsService.SimpleUserDetails) auth)
+                .map(DefaultUserDetailsService.SimpleUserDetails::getAccount)
+                .map(AccountEntity::getId)
+                .flatMap(accountRepository::findById)
+                .orElseThrow();
+        final Map<String, Object> model = Map.of(
+                "name", accountEntity.getName(),
+                "books", accountEntity.getBooks()
         );
         return new ModelAndView("account", model);
     }
@@ -59,5 +68,10 @@ public class AccountController {
                 .setRoles(Set.of(Role.USER))
         );
         return "redirect:/login";
+    }
+
+    @GetMapping("/")
+    public String toLibrary() {
+        return "redirect:/library";
     }
 }

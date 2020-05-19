@@ -9,13 +9,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Library</title>
+    <title>LIBRARY</title>
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/b/b2/Black_book_icon.svg"
+          type="image/x-icon">
 </head>
 <body>
-<form action="/logout" method="post">
-    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-    <input type="submit" value="Sign Out"/>
-</form>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+                    <input type="submit" class="btn btn-primary" value="Sign Out"/>
+                </form>
+            </div>
+            <div class="col">
+                <a href="/account">
+                 <button type="submit" class="btn btn-primary">Account</button>
+                </a>
+            </div>
+        </div>
+    </div>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -40,9 +53,11 @@
     <h2>Books</h2>
     <ul class="list-group">
         {{#books}}
+        {{#free}}
         <li class="list-group-item">
             <a href="/books/{{id}}">{{title}}</a>
         </li>
+        {{/free}}
         {{/books}}
     </ul>
 </div>

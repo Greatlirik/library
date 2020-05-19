@@ -1,7 +1,9 @@
 package com.github.greatlirik.library.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
@@ -27,9 +29,15 @@ public class AccountEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @Column(name = "active")
     private boolean active;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
+    private Set<BookEntity> books;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(
             name = "account_role",
