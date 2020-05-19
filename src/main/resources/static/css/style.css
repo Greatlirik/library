@@ -1,0 +1,16 @@
+.background{
+position:absolute;
+top:0px;
+height:500px;
+width:100vw;
+background-size:100%;
+overflow:hidden;
+}
+.registration-field{
+position:relative;
+color:black;
+background:yellow;
+margin-left: auto;
+margin-right: auto;
+z-index:2;
+}
