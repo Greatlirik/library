@@ -6,5 +6,15 @@
 </head>
 <body>
 Hello admin
+<div class="container">
+    <h2>Books</h2>
+    <ul class="list-group">
+        <li class="list-group">
+            {{#books}}
+            <ul class="list-group-item">{{title}}{{account}}</ul>
+            {{/books}}
+        </li>
+    </ul>
+</div>
 </body>
 </html>

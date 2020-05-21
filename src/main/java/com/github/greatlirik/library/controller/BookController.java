@@ -65,7 +65,8 @@ public class BookController {
                         .flatMap(account -> bookRepository
                                 .findById(id)
                                 .map(bookEntity -> {
-                                    bookEntity.setFree(false);
+                                    if(bookEntity.getQuantity()>1){bookEntity.setQuantity(bookEntity.getQuantity()-1);}
+                                    else{bookEntity.setFree(false);}
                                     bookEntity.setAccount(account);
                                     return bookEntity;
                                 })

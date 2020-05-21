@@ -1,16 +1,33 @@
-.background{
-position:absolute;
-top:0px;
-height:500px;
-width:100vw;
-background-size:100%;
-overflow:hidden;
+html,
+body,
+header,
+.view {
+  height: 100%;
 }
-.registration-field{
-position:relative;
-color:black;
-background:yellow;
-margin-left: auto;
-margin-right: auto;
-z-index:2;
+
+.bg-cover {
+    background-attachment: static;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    margin:0;
 }
+
+.table{
+    width: 400px;
+    margin:auto !important;
+    margin-top: 270px !important;
+    border-radius: 20px !important;
+    font-size: large;
+    border-color: black;
+}
+
+.table-white{
+    border-color: white !important;
+}
+
+.btn{
+    font-size: large;
+}
+
