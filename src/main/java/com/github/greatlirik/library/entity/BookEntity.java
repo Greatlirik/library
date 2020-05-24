@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
@@ -32,11 +33,7 @@ public class BookEntity {
     @Column(name="free", nullable = false)
     private Boolean free;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id")
-    private AccountEntity account;
+
 
     //TODO add many to many here with authors
 }

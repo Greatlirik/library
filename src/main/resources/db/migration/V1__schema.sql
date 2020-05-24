@@ -20,9 +20,7 @@ CREATE TABLE book (
     year SMALLINT NOT NULL,
     quantity SMALLINT NOT NULL,
     free BOOLEAN NOT NULL,
-    account_id INTEGER,
-    CONSTRAINT pk_book_id PRIMARY KEY (id),
-    CONSTRAINT fk_book_account FOREIGN KEY (account_id) REFERENCES account (id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT pk_book_id PRIMARY KEY (id)
 );
 
 CREATE TABLE author_book (
@@ -50,4 +48,12 @@ CREATE TABLE account_role (
     CONSTRAINT fk_account_role_role_id FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE account_book (
+    id SERIAL,
+    account_id INTEGER NOT NULL,
+    book_id INTEGER NOT NULL,
+    CONSTRAINT pk_account_book_id PRIMARY KEY (id),
+    CONSTRAINT fk_account_book_account_id FOREIGN KEY (account_id) REFERENCES account (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_account_book_book_id FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
 

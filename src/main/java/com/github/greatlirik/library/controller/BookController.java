@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -67,7 +68,7 @@ public class BookController {
                                 .map(bookEntity -> {
                                     if(bookEntity.getQuantity()>1){bookEntity.setQuantity(bookEntity.getQuantity()-1);}
                                     else{bookEntity.setFree(false);}
-                                    bookEntity.setAccount(account);
+                                    account.setBooks(Set.of(bookEntity));
                                     return bookEntity;
                                 })
                         )

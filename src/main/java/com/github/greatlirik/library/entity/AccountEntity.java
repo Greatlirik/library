@@ -33,8 +33,9 @@ public class AccountEntity {
     @EqualsAndHashCode.Exclude
     @Column(name = "active")
     private boolean active;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
-    private Set<BookEntity> books;
+
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
+//    private Set<BookEntity> books;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
@@ -48,4 +49,12 @@ public class AccountEntity {
     @Column(name = "role_id", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private Set<Role> roles = new HashSet<>();
+
+    @ToString.Exclude
+    @ManyToMany
+    @JoinTable(name = "account_book",
+            joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id")
+    )
+    private Set<BookEntity> books;
 }

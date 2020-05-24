@@ -18,11 +18,11 @@
         Login page
         <form action="/login" method="post">
             <div><label> User Name : <input type="text" name="name"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><label> Password : &nbsp;&nbsp;&nbsp;<input type="password" name="password"/> </label></div>
             <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-            <div><input type="submit" value="Sign In"/></div>
+            <div><input type="submit" value="Sign In" class="btn btn-outline-primary"/></div>
         </form>
-        <a href="/registration">Add new user</a>
+        <a type="button" href="/registration" class="btn btn-outline-light">Add new user</a>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
