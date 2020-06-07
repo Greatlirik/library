@@ -68,9 +68,11 @@ public class BookController {
                                 .map(bookEntity -> {
                                     if(bookEntity.getQuantity()>1){bookEntity.setQuantity(bookEntity.getQuantity()-1);}
                                     else{bookEntity.setFree(false);}
-                                    account.setBooks(Set.of(bookEntity));
+                                    account.getBooks().add(bookEntity);
+                                    accountRepository.save(account);
                                     return bookEntity;
                                 })
+
                         )
                 )
                 .ifPresent(bookRepository::save);

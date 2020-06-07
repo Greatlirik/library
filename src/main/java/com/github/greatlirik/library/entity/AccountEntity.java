@@ -34,9 +34,6 @@ public class AccountEntity {
     @Column(name = "active")
     private boolean active;
 
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
-//    private Set<BookEntity> books;
-
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)

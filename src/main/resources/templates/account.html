@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <title>Authorization</title>
 </head>
 <body>
+<div class="container">
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" class="btn btn-primary" value="Sign Out"/>
+    </form>
+</div>
 <div>Hello, {{name}}</div>
 <a href="/library">library</a>
 <li class="list-group">
     {{#books}}
-    <ul class="list-group-item">{{title}}</ul>
+    <a href="/books/{{id}}">{{title}}</a>
     {{/books}}
 </li>
 </body>

@@ -25,20 +25,16 @@ import java.util.Set;
 public class AccountController {
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
-    private final BookRepository bookRepository;
 
     @GetMapping("/admin")
-    public ModelAndView adminPage(@RequestParam(name = "account", required = false) String account) {
-            final Iterable<BookEntity> books = Optional.ofNullable(account)
-                    .map(bookRepository::findAllByTitle)
-                    .orElseGet(bookRepository::findAll);
-
+    public ModelAndView adminPage(@RequestParam(name = "username", required = false) String username) {
+            final Iterable<AccountEntity> accounts = accountRepository.findAll();
             final Map<String, Object> model = Map.of(
-                    "books", books
+                    "accounts", accounts
             );
-
         return new ModelAndView("admin", model);
     }
+
 
     @GetMapping("/account")
     public ModelAndView account() {
@@ -61,6 +57,7 @@ public class AccountController {
     public String loginPage() {
         return "login";
     }
+
 
     @GetMapping("/")
     public String toLibrary() {
@@ -87,15 +84,5 @@ public class AccountController {
         return "redirect:/login";
     }
 
-//    @PostMapping("/account")
-//    public String returnBook (){
-//     Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
-//            .map(Authentication::getPrincipal)
-//                .filter(auth -> auth instanceof DefaultUserDetailsService.SimpleUserDetails)
-//            .map(auth -> (DefaultUserDetailsService.SimpleUserDetails) auth)
-//            .map(DefaultUserDetailsService.SimpleUserDetails::getAccount)
-//                .map(AccountEntity::getId)
-//                .flatMap(accountId -> accountRepository
-//
-//    }
+
 }
