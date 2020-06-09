@@ -70,4 +70,19 @@ public class LibraryController {
 //        model.addAttribute("search",bookRepository.findAllByTitle(text));
 //        return "library";
 //    }
+    @PostMapping("/library")
+        public String searchResult(){
+        return "redirect:/search-result";
+    }
+
+    @GetMapping("/search-result")
+    public ModelAndView pageSearch(@RequestParam(name = "text", required = false) String text) {
+        final Iterable<BookEntity> books = Optional.ofNullable(text)
+                .map(bookRepository::findAllByTitle)
+                .orElseGet(bookRepository::findAll);
+        final Map<String, Object> model = Map.of(
+                "books", books
+        );
+        return new ModelAndView("search-result", model);
+    }
 }

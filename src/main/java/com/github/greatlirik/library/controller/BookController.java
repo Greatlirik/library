@@ -48,6 +48,9 @@ public class BookController {
         book.setGenre(genre);
         book.setYear(year);
         book.setQuantity(quantity);
+        if (book.getQuantity()<1){
+            return "book-add";
+        }
         book.setFree(true);
         book = bookRepository.save(book);
         return String.format("redirect:/books/%s", book.getId());
