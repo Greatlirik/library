@@ -38,9 +38,9 @@
                     <a class="nav-link" href="/books">Add book</a>
                 </li>
                 <li class="nav-item">
-                    <form  method="get">
+                    <form method="get">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-                        <input type="search" name="text" required placeholder="Поиск по сайту">
+                        <input type="search" name="q" required placeholder="Поиск по сайту">
                         <input type="submit" value="Найти">
                     </form>
                 </li>
@@ -59,6 +59,9 @@
             <a href="/books/{{id}}">{{title}}</a>
         </li>
         {{/free}}
+        {{/books}}
+        {{^books}}
+        <h2>No results</h2>
         {{/books}}
     </ul>
 </div>
